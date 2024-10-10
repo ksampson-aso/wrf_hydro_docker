@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###Change the version here
-version=v5.2.0
+version=v5.3.0
 ###########################
 
 

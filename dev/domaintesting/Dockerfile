@@ -1,11 +1,11 @@
 ###################################
-# Image name: wrfhydro/domaintesting:c5_2_0
+# Image name: wrfhydro/domaintesting:c5_3_0
 # Author: Kevin Sampson <ksampson@ucar.edu>
-# Date:  2023-12-04
+# Date:  2024-10-10
 ###################################
 FROM wrfhydro/dev:base
 
-MAINTAINER ksampson@ucar.edu
+MAINTAINER kevin.sampson@airbornesnowobservatories.com
 USER root
 
 ############################

@@ -1,0 +1,34 @@
+###################################
+# Image name: wrfhydro/domaintesting:c5_3_0
+# Author: Kevin Sampson <ksampson@ucar.edu>
+# Date:  2024-10-10
+###################################
+
+FROM wrfhydro/dev:base
+MAINTAINER kevin.sampson@airbornesnowobservatories.com
+USER root
+
+# Use CMAKE Build process, where build options are part of the command
+RUN apt-get update
+RUN apt install -y cmake libprotobuf-dev protobuf-compiler
+
+############################
+
+# Get the entrypoint script and download the code release
+COPY ./entrypoint.sh /.
+RUN chmod 777 /entrypoint.sh
+USER docker
+WORKDIR /home/docker
+RUN /entrypoint.sh
+
+############################
+# Create a build directory and run CMAKE with options
+#   https://github.com/NCAR/wrf_hydro_nwm_public/blob/main/docs/BUILD.md
+WORKDIR /home/docker/wrf_hydro_nwm_public/trunk/NDHMS/build
+RUN cmake .. \
+    -DWRF_HYDRO=1 \
+    -DHYDRO_D=1 \
+    -DSPATIAL_SOIL=1 \
+    -DNWM_META=1 > cmake_log.txt
+RUN make -j 4
+WORKDIR /home/docker

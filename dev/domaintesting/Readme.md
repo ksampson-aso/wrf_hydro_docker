@@ -8,7 +8,7 @@ In particular, this container is designed for testing domain configurations.
 This container includes the following:
 
 * Everything in wrfhydro/dev:base
-* Latest WRF-Hydro release source code (v5.2.0)
+* Latest WRF-Hydro release source code (v5.3.0)
 
 # Usage
 **Step 1: Pull the image**
